@@ -1,11 +1,13 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 
+require('dotenv').config();
+
 const app = express();
 app.use(express.static('public'));
 app.use(express.json());
 
-const client = new MongoClient('mongodb://localhost:27017');
+const client = new MongoClient(process.env.MONGODB_URI);
 let studentsCollection;
 
 // Connect to MongoDB and start the server
